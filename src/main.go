@@ -3,8 +3,16 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"os"
 	"encoding/json"
 )
+
+type JsonStruc struct {
+	Test1 string
+	Test2 int
+	Test3 []int
+	Test4 []string
+}
 
 func main() {
 	// 	SocketServer(3333)
@@ -36,44 +44,39 @@ func main() {
 	dynamticArray = append(dynamticArray, 5)
 	fmt.Println(dynamticArray)
 
-	var jsonTest = make(map[ string ] interface{})
-	jsonTest[ "Test1" ] = "asdf"
-	jsonTest[ "Test2" ] = 123
-	jsonTest[ "Test3" ] = dynamticArray
-	jsonTest[ "Test4" ] = strs
+	jsonTest := JsonStruc{}
+	jsonTest.Test1 = "asdfa"
+	jsonTest.Test2 = 123
+	jsonTest.Test3 = dynamticArray
+	jsonTest.Test4 = strs
 
-	// file, err := os.Create("output.json")
-	// if err != nil {
-	// 	fmt.Println(err)
-	// 	return
-	// }
-	//
-	// bytes, err := jsonfiy(jsonTest)
-	// if _, err := file.Write(bytes); err != nil {
-	// 	fmt.Println(err)
-	// 	return
-	// }
-	//
-	// file.Close()
-	//
-	// fmt.Println("Done")
+	file, err := os.Create("output.json")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	bytes, err := jsonfiy(jsonTest)
+	if _, err := file.Write(bytes); err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	file.Close()
+
+	fmt.Println("Done")
 
 	inputFile, _ := ioutil.ReadFile("output.json")
 	fmt.Println("read=" + string(inputFile))
 
-	var jsonObj map[ string ] interface{}
-	err := json.Unmarshal(inputFile, &jsonObj)
+	var jsonObj map[ string ] JsonStruc
 
-	if err != nil {
+	if err := json.Unmarshal(inputFile, &jsonObj); err != nil {
 		fmt.Println(err)
 	}
 
 	fmt.Println("blabla =", jsonObj)
 	fmt.Println(jsonObj[ "Test3" ])
-
-	// panic
-	// var intArray = jsonObj[ "Test3" ].([]int)
-	// fmt.Println("intArray = ", intArray)
 
 	for key, value := range jsonObj {
 		fmt.Printf("%s = %s\n", key, value)
