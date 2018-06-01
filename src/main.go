@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"os"
+	"io/ioutil"
+	"encoding/json"
 )
 
 func main() {
@@ -41,17 +42,40 @@ func main() {
 	jsonTest[ "Test3" ] = dynamticArray
 	jsonTest[ "Test4" ] = strs
 
-	file, err := os.Create("output.json")
+	// file, err := os.Create("output.json")
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	//
+	// bytes, err := jsonfiy(jsonTest)
+	// if _, err := file.Write(bytes); err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	//
+	// file.Close()
+	//
+	// fmt.Println("Done")
+
+	inputFile, _ := ioutil.ReadFile("output.json")
+	fmt.Println("read=" + string(inputFile))
+
+	var jsonObj map[ string ] interface{}
+	err := json.Unmarshal(inputFile, &jsonObj)
+
 	if err != nil {
 		fmt.Println(err)
-		return
 	}
 
-	bytes, err := jsonfiy(jsonTest)
-	if _, err := file.Write(bytes); err != nil {
-		fmt.Println(err)
-		return
-	}
+	fmt.Println("blabla =", jsonObj)
+	fmt.Println(jsonObj[ "Test3" ])
 
-	fmt.Println("Done")
+	// panic
+	// var intArray = jsonObj[ "Test3" ].([]int)
+	// fmt.Println("intArray = ", intArray)
+
+	for key, value := range jsonObj {
+		fmt.Printf("%s = %s\n", key, value)
+	}
 }
