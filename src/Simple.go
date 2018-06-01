@@ -16,6 +16,10 @@ func json2Str(v interface{}) (string, bool) {
 	}
 }
 
+func jsonfiy(v interface{}) ([]byte, error) {
+	return json.Marshal(v)
+}
+
 func containsInt(array []int, search int) bool {
 	for _, value := range array {
 		if value == search {

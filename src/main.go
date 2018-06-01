@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 )
 
 func main() {
@@ -33,4 +34,19 @@ func main() {
 	dynamticArray := []int{1, 2, 3, 4}
 	dynamticArray = append(dynamticArray, 5)
 	fmt.Println(dynamticArray)
+
+	file, err := os.Create("output.json")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	bytes, err := jsonfiy(strs)
+	// write a chunk
+	if _, err := file.Write(bytes); err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Println("Done")
 }
