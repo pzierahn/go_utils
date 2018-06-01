@@ -21,8 +21,10 @@ func main() {
 	}
 
 	primes := []int{2, 3, 5, 7, 11, 13}
-	strs := []string{"Hallo", "Blaasdf", "dsfasd", "Bla"}
 	fmt.Println(primes)
 	fmt.Println(containsInt(primes, 3))
+
+	strs := []string{"Hallo", "Blaasdf", "dsfasd", "Bla"}
+	fmt.Println(strs)
 	fmt.Println(containsString(strs, "Bla"))
 }
