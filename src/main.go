@@ -35,14 +35,19 @@ func main() {
 	dynamticArray = append(dynamticArray, 5)
 	fmt.Println(dynamticArray)
 
+	var jsonTest = make(map[ string ] interface{})
+	jsonTest[ "Test1" ] = "asdf"
+	jsonTest[ "Test2" ] = 123
+	jsonTest[ "Test3" ] = dynamticArray
+	jsonTest[ "Test4" ] = strs
+
 	file, err := os.Create("output.json")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	bytes, err := jsonfiy(strs)
-	// write a chunk
+	bytes, err := jsonfiy(jsonTest)
 	if _, err := file.Write(bytes); err != nil {
 		fmt.Println(err)
 		return
