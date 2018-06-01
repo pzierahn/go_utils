@@ -70,7 +70,3 @@ func SocketServer(port int) {
 		go handler(conn)
 	}
 }
-
-func main() {
-	SocketServer(3333)
-}

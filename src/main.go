@@ -5,6 +5,8 @@ import (
 )
 
 func main() {
+	// 	SocketServer(3333)
+
 	var mymap = make(map[ string ] string)
 	mymap[ "Test1" ] = "asdf"
 	mymap[ "Test2" ] = "asdasff"
@@ -27,4 +29,8 @@ func main() {
 	strs := []string{"Hallo", "Blaasdf", "dsfasd", "Bla"}
 	fmt.Println(strs)
 	fmt.Println(containsString(strs, "Bla"))
+
+	dynamticArray := []int{1, 2, 3, 4}
+	dynamticArray = append(dynamticArray, 5)
+	fmt.Println(dynamticArray)
 }
