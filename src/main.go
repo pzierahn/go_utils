@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
-	"os"
 	"encoding/json"
+	"os"
 )
 
 type JsonStruc struct {
@@ -48,7 +48,7 @@ func main() {
 	jsonTest.Test1 = "asdfa"
 	jsonTest.Test2 = 123
 	jsonTest.Test3 = dynamticArray
-	jsonTest.Test4 = strs
+	// jsonTest.Test4 = strs
 
 	file, err := os.Create("output.json")
 	if err != nil {
@@ -69,16 +69,16 @@ func main() {
 	inputFile, _ := ioutil.ReadFile("output.json")
 	fmt.Println("read=" + string(inputFile))
 
-	var jsonObj map[ string ] JsonStruc
+	var jsonObj JsonStruc
 
 	if err := json.Unmarshal(inputFile, &jsonObj); err != nil {
 		fmt.Println(err)
 	}
 
 	fmt.Println("blabla =", jsonObj)
-	fmt.Println(jsonObj[ "Test3" ])
+	fmt.Println(jsonObj.Test3)
 
-	for key, value := range jsonObj {
-		fmt.Printf("%s = %s\n", key, value)
+	if jsonObj.Test4 == nil {
+		fmt.Println("jsonObj.Test4=null")
 	}
 }
