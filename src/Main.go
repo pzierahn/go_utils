@@ -7,6 +7,8 @@ import (
 	"os"
 )
 
+const LOGTAG_MAIN = "Main"
+
 type JsonStruc struct {
 	Test1 string
 	Test2 int
@@ -15,7 +17,11 @@ type JsonStruc struct {
 }
 
 func main() {
-	// 	SocketServer(3333)
+
+	curl()
+
+	//os.Exit(0)
+	SocketServer(3333)
 
 	var mymap = make(map[ string ] string)
 	mymap[ "Test1" ] = "asdf"
@@ -29,7 +35,7 @@ func main() {
 	}
 
 	if str, ok := json2Str(mymap); ok {
-		fmt.Println("jsonString: " + str)
+		fmt.Println(LOGTAG_MAIN, "-->", "jsonString=" + str)
 	}
 
 	primes := []int{2, 3, 5, 7, 11, 13}
@@ -67,7 +73,7 @@ func main() {
 	fmt.Println("Done")
 
 	inputFile, _ := ioutil.ReadFile("output.json")
-	fmt.Println("read=" + string(inputFile))
+	fmt.Println(LOGTAG_MAIN, "-->", "read=" + string(inputFile))
 
 	var jsonObj JsonStruc
 
