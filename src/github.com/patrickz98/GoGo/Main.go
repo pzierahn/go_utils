@@ -21,7 +21,7 @@ type JsonStruc struct {
 }
 
 func main() {
-
+	fmt.Println("Starting....")
 	StartWebServer()
 	//curl()
 
