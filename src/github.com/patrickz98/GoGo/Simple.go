@@ -1,4 +1,4 @@
-package main
+package GoGo
 
 import (
 	"encoding/json"
@@ -17,7 +17,7 @@ func json2Str(v interface{}) (string, bool) {
 }
 
 func jsonfiy(v interface{}) ([]byte, error) {
-	return json.Marshal(v)
+	return json.MarshalIndent(v, "", "    ")
 }
 
 func containsInt(array []int, search int) bool {

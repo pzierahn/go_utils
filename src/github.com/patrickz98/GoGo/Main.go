@@ -1,4 +1,4 @@
-package main
+package GoGo
 
 import (
 	"fmt"
@@ -14,13 +14,18 @@ type JsonStruc struct {
 	Test2 int
 	Test3 []int
 	Test4 []string
+	Test5 struct {
+		name string
+		age int
+	}
 }
 
 func main() {
 
-	curl()
+	StartWebServer()
+	//curl()
 
-	//os.Exit(0)
+	os.Exit(0)
 	SocketServer(3333)
 
 	var mymap = make(map[ string ] string)

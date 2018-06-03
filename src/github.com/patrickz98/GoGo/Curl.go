@@ -1,4 +1,4 @@
-package main
+package GoGo
 
 import (
 	"net/http"
