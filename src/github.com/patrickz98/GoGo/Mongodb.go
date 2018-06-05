@@ -7,6 +7,7 @@ import (
 	"math/rand"
 	"time"
 	"github.com/mongodb/mongo-go-driver/bson"
+	"github.com/mongodb/mongo-go-driver/bson/objectid"
 )
 
 
@@ -121,13 +122,15 @@ func mongoSample() {
 	// pups := Person{RandStringRunes(10), "iPhone", time.Now(), time.Now()}
 	// pups := Person{RandStringRunes(10), "iPhone", removeTime, removeTime}
 
+	id := objectid.New()
+	fmt.Println("id=" + id.String())
+
 	pups := bson.NewDocument(
-		bson.EC.String("Name", RandStringRunes(10)),
+		bson.EC.String("Name", RandStringRunes(8)),
 		bson.EC.String("Item", "canvas"),
-		bson.EC.Time("created", time.Now().UTC()),
-		bson.EC.Time("createdAt", time.Now().UTC()),
-		// bson.EC.DateTime("created", time.Now().Unix()),
-		// bson.EC.DateTime("createdAt", time.Now().Unix()),
+		bson.EC.Time("created", time.Now()),
+		bson.EC.Time("createdAt", time.Now()),
+		bson.EC.ObjectID("_id", id),
 	)
 
 	fmt.Println("pups")
