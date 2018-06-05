@@ -7,7 +7,7 @@ import (
 )
 
 func json2Str(v interface{}) (string, bool) {
-	jsonString, err := json.Marshal(v)
+	jsonString, err := jsonfiy(v)
 
 	if err != nil {
 		return string(jsonString), true
