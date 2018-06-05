@@ -116,7 +116,10 @@ func mongoSample() {
 		_id:     id,
 		Name:    RandStringRunes(10),
 		Bla:     "patrick",
-		Created: time.Now()}
+		Created: time.Now(),
+	}
+
+	fmt.Println("pups=" + simpleJson2String(pups))
 
 	// pups := bson.NewDocument(
 	// 	bson.EC.String("Name", RandStringRunes(8)),
@@ -158,11 +161,11 @@ func MongoSearch() {
 	searchQuery := bson.NewDocument(bson.EC.ObjectID("_id", id))
 
 	doc := bson.NewDocument()
-	per := Person{}
+	// per := Person{}
 	// var per Person
 	result := coll.FindOne(context.Background(), searchQuery)
-	// result.Decode(doc)
-	result.Decode(per)
+	result.Decode(doc)
+	// result.Decode(per)
 
 	// var per Person
 
@@ -172,9 +175,9 @@ func MongoSearch() {
 
 	// fmt.Println("adsfasd --> " + doc.Lookup("_id").ObjectID().String())
 
-	pretty, _ := json2Str(per)
 
-	fmt.Println("pretty=" + pretty)
+	// fmt.Println(per)
+	// fmt.Println("pretty=" + simpleJson2String(per))
 	fmt.Println("doc=" + doc.ToExtJSON(true))
 	fmt.Println("doc=" + doc.ToExtJSON(false))
 

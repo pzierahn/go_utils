@@ -17,6 +17,16 @@ func json2Str(v interface{}) (string, bool) {
 	}
 }
 
+func simpleJson2String(v interface{}) string {
+	jsonString, err := jsonfiy(v)
+
+	if err != nil {
+		return ""
+	} else {
+		return string(jsonString)
+	}
+}
+
 func jsonfiy(v interface{}) ([]byte, error) {
 	return json.MarshalIndent(v, "", "    ")
 }
