@@ -19,11 +19,15 @@ run: build
 	./$(BINARY_DIR)/$(BINARY_NAME)
 
 # Cross compilation
-build-linux:
+build-odroid:
 	cd $(SOURCE_DIR) && CGO_ENABLED=0 GOOS=linux GOARCH=arm $(GOBUILD) -o $(BINARY_NAME)
 	mkdir -p $(BINARY_DIR)
 	mv $(SOURCE_DIR)/$(BINARY_NAME) $(BINARY_DIR)
 
+build-linux:
+	cd $(SOURCE_DIR) && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -o $(BINARY_NAME)
+	mkdir -p $(BINARY_DIR)
+	mv $(SOURCE_DIR)/$(BINARY_NAME) $(BINARY_DIR)
 
 docker-build:
-	docker run --rm -it -v "$(GOPATH)":/go -w /go/src/bitbucket.org/rsohlich/makepost golang:latest go build -o "$(BINARY)" -v
+	docker build -f Dockerfile .

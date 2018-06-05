@@ -1,7 +1,5 @@
-FROM golang:latest
-EXPOSE 8080
+FROM ubuntu:latest
 RUN mkdir /app
-ADD src/github.com/patrickz98/GoGo/ /app/
+ADD build/main /app/
 WORKDIR /app
-RUN go build -o main
 CMD ["/app/main"]
