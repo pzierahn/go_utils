@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"encoding/json"
 	"os"
+
 )
 
 const LOGTAG_MAIN = "Main"
@@ -22,10 +23,14 @@ type JsonStruc struct {
 
 func main() {
 	fmt.Println("Starting....")
+
+	mongoSample()
+
+	os.Exit(0)
+
 	StartWebServer()
 	//curl()
 
-	os.Exit(0)
 	SocketServer(3333)
 
 	var mymap = make(map[ string ] string)
