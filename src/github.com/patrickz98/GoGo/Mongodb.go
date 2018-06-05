@@ -18,7 +18,6 @@ const MONGO_Collection = "test"
 type Person struct {
 	Name      string
 	Phone     string
-	createdAt time.Time
 	created   time.Time
 }
 
@@ -44,8 +43,8 @@ func createIndex(coll *mongo.Collection) {
 	// expireAt := bson.NewDocument(bson.EC.Int32("expireAt", 1))
 	// expireAfterSeconds := bson.NewDocument(bson.EC.Int64("expireAfterSeconds", 0))
 
-	expireAt := bson.NewDocument(bson.EC.Int32("createdAt", 1))
-	expireAfterSeconds := bson.NewDocument(bson.EC.Int32("expireAfterSeconds", 10))
+	expireAt := bson.NewDocument(bson.EC.Int32("created", 1))
+	expireAfterSeconds := bson.NewDocument(bson.EC.Int32("expireAfterSeconds", 3600))
 	// expireAfterSeconds := bson.NewDocument(bson.EC.Int64("expireAfterSeconds", 6 * 7 * 24 * 60 * 60))
 
 	indexModel := mongo.IndexModel{
@@ -85,10 +84,10 @@ func mongoSample() {
 
 	db := client.Database(MONGO_Database)
 
-	db.RunCommand(
-		context.Background(),
-		bson.NewDocument(bson.EC.Int32("dropDatabase", 1)),
-	)
+	// db.RunCommand(
+	// 	context.Background(),
+	// 	bson.NewDocument(bson.EC.Int32("dropDatabase", 1)),
+	// )
 
 	coll := db.Collection(MONGO_Collection)
 
@@ -125,11 +124,14 @@ func mongoSample() {
 	id := objectid.New()
 	fmt.Println("id=" + id.String())
 
+	// bla := Person{RandStringRunes(10), "iPhone", time.Now()}
+	// pups := bson.NewDocument(bla)
+
 	pups := bson.NewDocument(
 		bson.EC.String("Name", RandStringRunes(8)),
-		bson.EC.String("Item", "canvas"),
+		// bson.EC.String("UUID", uuid()),
+		bson.EC.String("bla", "patrick"),
 		bson.EC.Time("created", time.Now()),
-		bson.EC.Time("createdAt", time.Now()),
 		bson.EC.ObjectID("_id", id),
 	)
 
@@ -146,4 +148,46 @@ func mongoSample() {
 	fmt.Println(result.InsertedID)
 
 	client.Disconnect(context.Background())
+
+}
+
+func MongoSearch() {
+	client, err := mongo.Connect(context.Background(), MONGO_SERVER, nil)
+
+	if err != nil {
+		panic(err)
+		return
+	}
+
+	db := client.Database(MONGO_Database)
+
+	coll := db.Collection(MONGO_Collection)
+
+	id, _ := objectid.FromHex("5b16ae607e7421110449a8c6")
+	searchQuery := bson.NewDocument(bson.EC.ObjectID("_id", id))
+
+	doc := bson.NewDocument()
+	result := coll.FindOne(context.Background(), searchQuery)
+	result.Decode(doc)
+
+	fmt.Println("doc=")
+	fmt.Println(doc.ToExtJSON(false))
+
+
+	// searchQuery := bson.NewDocument(bson.EC.String("bla", "patrick"))
+	// cursur, err := coll.Find(context.Background(), searchQuery)
+	//
+	// if err != nil {
+	// 	panic(err)
+	// 	return
+	// }
+	//
+	// doc := bson.NewDocument()
+	// for cursur.Next(context.Background()) {
+	// 	doc.Reset()
+	// 	cursur.Decode(doc)
+	//
+	// 	fmt.Println("Fund: ")
+	// 	fmt.Println(doc)
+	// }
 }

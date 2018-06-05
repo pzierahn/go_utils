@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"crypto/rand"
 )
 
 func json2Str(v interface{}) (string, bool) {
@@ -38,4 +39,11 @@ func containsString(array []string, search string) bool {
 	}
 
 	return false
+}
+
+func uuid() (uuid string) {
+	buffer := make([]byte, 16)
+	rand.Read(buffer)
+
+	return fmt.Sprintf("%X-%X-%X-%X-%X", buffer[0:4], buffer[4:6], buffer[6:8], buffer[8:10], buffer[10:])
 }

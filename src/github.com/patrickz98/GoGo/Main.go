@@ -25,6 +25,7 @@ func main() {
 	fmt.Println("Starting....")
 
 	mongoSample()
+	MongoSearch()
 
 	os.Exit(0)
 
