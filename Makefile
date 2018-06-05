@@ -20,14 +20,21 @@ run: build
 
 # Cross compilation
 build-odroid:
-	cd $(SOURCE_DIR) && CGO_ENABLED=0 GOOS=linux GOARCH=arm $(GOBUILD) -o $(BINARY_NAME)
+	cd $(SOURCE_DIR) && CGO_ENABLED=0 GOOS=linux GOARCH=arm $(GOBUILD) -o $(BINARY_NAME)_odroid.exec
 	mkdir -p $(BINARY_DIR)
-	mv $(SOURCE_DIR)/$(BINARY_NAME) $(BINARY_DIR)
+	mv $(SOURCE_DIR)/$(BINARY_NAME)_odroid.exec $(BINARY_DIR)
 
 build-linux:
-	cd $(SOURCE_DIR) && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -o $(BINARY_NAME)
+	cd $(SOURCE_DIR) && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -o $(BINARY_NAME)_linux.exec
 	mkdir -p $(BINARY_DIR)
-	mv $(SOURCE_DIR)/$(BINARY_NAME) $(BINARY_DIR)
+	mv $(SOURCE_DIR)/$(BINARY_NAME)_linux.exec $(BINARY_DIR)
+
+build-windows:
+	cd $(SOURCE_DIR) && CGO_ENABLED=0 GOOS=windows GOARCH=amd64 $(GOBUILD) -o $(BINARY_NAME)_windows.exec
+	mkdir -p $(BINARY_DIR)
+	mv $(SOURCE_DIR)/$(BINARY_NAME)_windows.exec $(BINARY_DIR)
+
+build-all: build build-odroid build-linux build-windows
 
 docker-build:
 	docker build -f Dockerfile .

@@ -75,4 +75,6 @@ func mongoSample() {
 
 	fmt.Println("result")
 	fmt.Println(result)
+
+	client.Disconnect(context.Background())
 }
