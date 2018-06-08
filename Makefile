@@ -38,3 +38,7 @@ build-all: build build-odroid build-linux build-windows
 
 docker-build:
 	docker build -f Dockerfile .
+
+deps:
+    go get github.com/SSSaaS/sssa-golang
+    go get github.com/mongodb/mongo-go-driver
