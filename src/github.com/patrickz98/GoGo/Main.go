@@ -6,8 +6,6 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/SSSaaS/sssa-golang"
-	"strconv"
 )
 
 const LOGTAG_MAIN = "Main"
@@ -26,15 +24,17 @@ type JsonStruc struct {
 func main() {
 	fmt.Println("Starting....")
 
-	parts, _ := sssa.Create(3, 9, RandStringRunes(1024 * 4))
+	startWebsocket()
 
-	for inx, part := range parts {
-		fmt.Println("inx=" + strconv.Itoa(inx) + " part=" + part)
-	}
-
-	msg, _ := sssa.Combine(parts[:3])
-
-	fmt.Println("msg=" + msg)
+	// parts, _ := sssa.Create(3, 9, RandStringRunes(1024 * 4))
+	//
+	// for inx, part := range parts {
+	// 	fmt.Println("inx=" + strconv.Itoa(inx) + " part=" + part)
+	// }
+	//
+	// msg, _ := sssa.Combine(parts[:3])
+	//
+	// fmt.Println("msg=" + msg)
 
 	//mongoSample()
 	//MongoSearch()

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"crypto/rand"
+	"io/ioutil"
 )
 
 func json2Str(v interface{}) (string, bool) {
@@ -56,4 +57,9 @@ func uuid() (uuid string) {
 	rand.Read(buffer)
 
 	return fmt.Sprintf("%X-%X-%X-%X-%X", buffer[0:4], buffer[4:6], buffer[6:8], buffer[8:10], buffer[10:])
+}
+
+func readFileStr(path string) string {
+	dat, _ := ioutil.ReadFile(path)
+	return string(dat)
 }
