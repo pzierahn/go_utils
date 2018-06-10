@@ -28,7 +28,7 @@ func echo(writer http.ResponseWriter, request *http.Request) {
 			break
 		}
 
-		log.Printf("mt=%d message=%s", mt, message)
+		log.Printf("message=%s", message)
 
 		err = connection.WriteMessage(mt, message)
 		if err != nil {
@@ -38,8 +38,9 @@ func echo(writer http.ResponseWriter, request *http.Request) {
 	}
 }
 
-func home(w http.ResponseWriter, r *http.Request) {
-	homeTemplate.Execute(w, "ws://" + r.Host + "/echo")
+func home(writer http.ResponseWriter, request *http.Request) {
+	// homeTemplate.Execute(writer, "ws://" + request.Host + "/echo")
+	homeTemplate.Execute(writer, nil)
 }
 
 func startWebsocket() {
