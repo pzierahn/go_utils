@@ -28,7 +28,7 @@ func echo(writer http.ResponseWriter, request *http.Request) {
 			break
 		}
 
-		log.Printf("recv: %s", message)
+		log.Printf("mt=%d message=%s", mt, message)
 
 		err = connection.WriteMessage(mt, message)
 		if err != nil {

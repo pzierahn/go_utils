@@ -10,6 +10,7 @@ Main.createElem = function(elem, parent)
 Main.main = function()
 {
     let ws = new WebSocket("{{.}}");
+
     let button = Main.createElem("button", document.body);
     button.innerText = "Button";
     button.onclick = function()
@@ -33,7 +34,6 @@ Main.main = function()
     ws.onclose = function(evt)
     {
         print("CLOSE");
-        ws = null;
     };
 
     ws.onmessage = function(evt)
