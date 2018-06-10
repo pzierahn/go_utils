@@ -1,68 +1,54 @@
-window.addEventListener("load", function(evt)
+Main = {};
+
+Main.createElem = function(elem, parent)
 {
-    let output = document.getElementById("output");
-    let input = document.getElementById("input");
-    let ws;
+    let ele = document.createElement(elem);
+    parent.appendChild(ele);
+    return ele;
+};
+
+Main.main = function()
+{
+    let ws = new WebSocket("{{.}}");
+    let button = Main.createElem("button", document.body);
+    button.innerText = "Button";
+    button.onclick = function()
+    {
+        ws.send("Hallo");
+    };
+
+    let div = Main.createElem("div", document.body);
 
     let print = function(message)
     {
-        let d = document.createElement("div");
-        d.innerHTML = message;
-        output.appendChild(d);
+        let tag = Main.createElem("div", div);
+        tag.innerHTML = message;
     };
 
-    document.getElementById("open").onclick = function(evt)
+    ws.onopen = function(evt)
     {
-        if (ws)
-        {
-            return false;
-        }
-
-        ws = new WebSocket("{{.}}");
-        ws.onopen = function(evt)
-        {
-            print("OPEN");
-        };
-
-        ws.onclose = function(evt)
-        {
-            print("CLOSE");
-            ws = null;
-        };
-
-        ws.onmessage = function(evt)
-        {
-            print("RESPONSE: " + evt.data);
-        };
-
-        ws.onerror = function(evt)
-        {
-            print("ERROR: " + evt.data);
-        };
-
-        return false;
+        print("OPEN");
     };
 
-    document.getElementById("send").onclick = function(evt)
+    ws.onclose = function(evt)
     {
-        if (! ws)
-        {
-            return false;
-        }
-
-        print("SEND: " + input.value);
-        ws.send(input.value);
-        return false;
+        print("CLOSE");
+        ws = null;
     };
 
-    document.getElementById("close").onclick = function(evt)
+    ws.onmessage = function(evt)
     {
-        if (! ws)
-        {
-            return false;
-        }
-
-        ws.close();
-        return false;
+        print("RESPONSE: " + evt.data);
     };
-});
+
+    ws.onerror = function(evt)
+    {
+        print("ERROR: " + evt.data);
+    };
+
+    // print("SEND: " + input.value);
+    // ws.send(input.value);
+    // ws.close();
+};
+
+window.addEventListener("load", Main.main);
