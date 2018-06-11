@@ -1,11 +1,10 @@
 package main
 
 import (
+	"os"
 	"fmt"
 	"io/ioutil"
 	"encoding/json"
-	"os"
-
 )
 
 const LOGTAG_MAIN = "Main"

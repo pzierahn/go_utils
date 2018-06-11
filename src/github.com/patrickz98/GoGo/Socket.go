@@ -1,14 +1,14 @@
 package main
 
 import (
+	"os"
+	"io"
 	"fmt"
 	"net"
-	"bufio"
 	"log"
-	"strconv"
-	"os"
 	"time"
-	"io"
+	"bufio"
+	"strconv"
 )
 
 const LOGTAG_SOCKET = "Socket"

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"net/http"
 	"fmt"
+	"net/http"
 )
 
 func sayHello(responseWriter http.ResponseWriter, request *http.Request) {

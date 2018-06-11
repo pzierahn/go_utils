@@ -1,8 +1,8 @@
 package main
 
 import (
-	"net/http"
 	"fmt"
+	"net/http"
 )
 
 const LOGTAG_CURL = "Curl"

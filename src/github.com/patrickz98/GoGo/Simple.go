@@ -1,10 +1,10 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"crypto/rand"
 	"io/ioutil"
+	"crypto/rand"
+	"encoding/json"
 )
 
 func json2Str(v interface{}) (string, bool) {

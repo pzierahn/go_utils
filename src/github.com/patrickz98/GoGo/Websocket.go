@@ -1,11 +1,10 @@
 package main
 
 import (
-	"flag"
-	"html/template"
 	"log"
+	"flag"
 	"net/http"
-
+	"html/template"
 	"github.com/gorilla/websocket"
 )
 
@@ -56,7 +55,7 @@ var html = `
 <html>
 <head>
 <meta charset="utf-8">
-<script>  
+<script>
 ` + readFileStr("/Users/patrick/github/GoGo/main.js") + `
 </script>
 </head>
