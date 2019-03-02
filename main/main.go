@@ -7,36 +7,6 @@ import (
 	"strings"
 )
 
-// 	"github.com/SSSaaS/sssa-golang"
-// var letterRunes = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
-//
-// func RandStringRunes(n int) string {
-//
-// 	b := make([]rune, n)
-//
-// 	for inx := range b {
-// 		b[ inx ] = letterRunes[rand.Intn(len(letterRunes))]
-// 	}
-//
-// 	return string(b)
-// }
-//
-// func sssaas() {
-//
-// 	text := RandStringRunes(1024 * 4)
-// 	fmt.Println("msg =", text)
-//
-// 	parts, _ := sssa.Create(3, 9, text)
-//
-// 	for inx, part := range parts {
-// 		fmt.Println("inx=" + strconv.Itoa(inx) + " part=" + part)
-// 	}
-//
-// 	msg, _ := sssa.Combine(parts[:3])
-//
-// 	fmt.Println("msg =", msg)
-// }
-
 func main() {
 
 	count := 0
@@ -46,16 +16,16 @@ func main() {
 
 	for {
 		// word := words.RandomWord(5)
-		// word := words.RandomWordMinMax(7, 8)
-		word := words.RandomWordSimple(10)
+		word := words.RandomWordMinMax(7, 8)
+		// word := words.RandomWordSimple(10)
 
 		// if len(word) > 7 {
 		// 	continue
 		// }
 
-		if !strings.HasPrefix(word, "x") {
-			continue
-		}
+		// if !strings.HasPrefix(word, "x") {
+		// 	continue
+		// }
 
 		// if words.Levenshtein(word, "zierahn") > 3 {
 		// 	continue
