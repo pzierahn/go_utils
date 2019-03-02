@@ -1,7 +1,7 @@
 # Go parameters
 GOCMD=go
 GOBUILD=$(GOCMD) build
-SOURCE_DIR=src/github.com/patrickz98/GoGo/
+SOURCE_DIR=./GoGo/
 BINARY_DIR=build
 BINARY_NAME=main
 
@@ -41,5 +41,3 @@ docker-build:
 
 deps:
 	go get github.com/SSSaaS/sssa-golang
-	go get github.com/mongodb/mongo-go-driver
-	go get github.com/gorilla/websocket
