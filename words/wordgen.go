@@ -37,7 +37,7 @@ func (this WordGenerator) RandomWord(maxLength int) string {
 	return word
 }
 
-func New() {
+func New() *WordGenerator {
 
 	vocals := []string{"b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"}
 	consonances := []string{"a", "e", "i", "o", "u"}

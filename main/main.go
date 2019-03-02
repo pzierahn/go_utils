@@ -3,6 +3,7 @@ package main
 import (
 	"../words"
 	"fmt"
+	"strings"
 )
 
 // 	"github.com/SSSaaS/sssa-golang"
@@ -41,19 +42,19 @@ func main() {
 	genWords := 10
 
 	for {
-		word := words.RandomWord(7)
+		word := words.RandomWord(5)
 
 		// if len(word) > 7 {
 		// 	continue
 		// }
 
-		// if !strings.HasPrefix(word, "qu") {
-		// 	continue
-		// }
-
-		if words.Levenshtein(word, "zierahn") > 3 {
+		if !strings.HasPrefix(word, "qu") {
 			continue
 		}
+
+		// if words.Levenshtein(word, "zierahn") > 3 {
+		// 	continue
+		// }
 
 		// if Levenshtein(word, "sidious") > 3 {
 		// 	continue
