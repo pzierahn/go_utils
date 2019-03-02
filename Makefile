@@ -41,3 +41,4 @@ docker-build:
 
 deps:
 	go get github.com/SSSaaS/sssa-golang
+	go get github.com/deckarep/golang-set
