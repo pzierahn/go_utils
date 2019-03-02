@@ -44,7 +44,8 @@ func main() {
 	newWords := set.New()
 
 	for {
-		word := words.RandomWord(5)
+		// word := words.RandomWord(5)
+		word := words.RandomWordMinMax(7, 8)
 
 		// if len(word) > 7 {
 		// 	continue
@@ -58,7 +59,7 @@ func main() {
 		// 	continue
 		// }
 
-		if words.Levenshtein(word, "patrick") > 3 {
+		if words.Levenshtein(word, "zierahn") > 3 {
 			continue
 		}
 

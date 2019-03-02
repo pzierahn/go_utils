@@ -15,6 +15,11 @@ func random(min, max int) int {
 	return r1.Intn(max-min) + min
 }
 
+func RandomWordMinMax(min int, max int) string {
+
+	return randomWord(random(min, max))
+}
+
 func RandomWord(wordLength int) string {
 
 	if wordLength < 3 || wordLength > 15 {
