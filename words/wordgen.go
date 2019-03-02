@@ -5,13 +5,11 @@ import (
 	"time"
 )
 
-type WordGenerator struct {
-	vocals      []string
-	consonances []string
-	phones      []string
-}
+func RandomWordSimple(maxLength int) string {
 
-func (this WordGenerator) RandomWord(maxLength int) string {
+	vocals := []string{"b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"}
+	consonances := []string{"a", "e", "i", "o", "u"}
+	phones := []string{"bu", "ca", "ce", "ci", "co", "cu", "da", "de", "di", "do", "du", "fa", "fe", "fi", "fo", "fu", "ga", "ge", "gi", "go", "gu", "ha", "he", "hi", "ho", "hu", "ja", "je", "ji", "jo", "ju", "ka", "ke", "ki", "ko", "ku", "la", "le", "li", "lo", "lu", "ma", "me", "mi", "mo", "mu", "na", "ne", "ni", "no", "nu", "pa", "pe", "pi", "po", "pu", "qa", "qe", "qi", "qo", "qu", "ra", "re", "ri", "ro", "ru", "sa", "se", "si", "so", "su", "ta", "te", "ti", "to", "tu", "va", "ve", "vi", "vo", "vu", "wa", "we", "wi", "wo", "wu", "xa", "xe", "xi", "xo", "xu", "ya", "ye", "yi", "yo", "yu", "za", "ze", "zi", "zo", "zu"}
 
 	s1 := rand.NewSource(time.Now().UnixNano())
 	r1 := rand.New(s1)
@@ -23,41 +21,16 @@ func (this WordGenerator) RandomWord(maxLength int) string {
 	var word = ""
 
 	for inx := 0; inx <= nbr; inx++ {
-		word += this.phones[r1.Int()%len(this.phones)]
+		word += phones[r1.Int()%len(phones)]
 	}
 
 	if startVowel == 1 {
-		word = this.consonances[r1.Int()%len(this.consonances)] + word
+		word = consonances[r1.Int()%len(consonances)] + word
 	}
 
 	if endConsonant == 1 {
-		word += this.vocals[r1.Int()%len(this.vocals)]
+		word += vocals[r1.Int()%len(vocals)]
 	}
 
 	return word
-}
-
-func New() *WordGenerator {
-
-	vocals := []string{"b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"}
-	consonances := []string{"a", "e", "i", "o", "u"}
-
-	lenCons := len(consonances)
-	phones := make([]string, len(vocals)*lenCons)
-
-	for inx, v := range vocals {
-		for iny, c := range consonances {
-
-			index := lenCons*inx + iny
-			phones[index] = v + c
-		}
-	}
-
-	generator := &WordGenerator{
-		vocals:      vocals,
-		consonances: consonances,
-		phones:      phones,
-	}
-
-	return generator
 }

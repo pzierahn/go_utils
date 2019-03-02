@@ -4,6 +4,7 @@ import (
 	"../words"
 	"fmt"
 	"github.com/golang-collections/collections/set"
+	"strings"
 )
 
 // 	"github.com/SSSaaS/sssa-golang"
@@ -39,29 +40,30 @@ import (
 func main() {
 
 	count := 0
-	genWords := 10
+	genWords := 0
 
 	newWords := set.New()
 
 	for {
 		// word := words.RandomWord(5)
-		word := words.RandomWordMinMax(7, 8)
+		// word := words.RandomWordMinMax(7, 8)
+		word := words.RandomWordSimple(10)
 
 		// if len(word) > 7 {
 		// 	continue
 		// }
 
-		// if !strings.HasPrefix(word, "qu") {
+		if !strings.HasPrefix(word, "x") {
+			continue
+		}
+
+		// if words.Levenshtein(word, "zierahn") > 3 {
 		// 	continue
 		// }
 
 		// if words.Levenshtein(word, "zierahn") > 3 {
 		// 	continue
 		// }
-
-		if words.Levenshtein(word, "zierahn") > 3 {
-			continue
-		}
 
 		// if Levenshtein(word, "sidious") > 3 {
 		// 	continue
@@ -71,9 +73,9 @@ func main() {
 		// 	continue
 		// }
 
-		// if !strings.Contains(word, "oo") {
-		// 	continue
-		// }
+		if !strings.Contains(word, "oo") {
+			continue
+		}
 
 		if newWords.Has(word) {
 			continue
