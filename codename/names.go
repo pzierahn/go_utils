@@ -1,0 +1,5 @@
+package codename
+
+func NewName() {
+
+}

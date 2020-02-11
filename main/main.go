@@ -4,19 +4,20 @@ import (
 	"../words"
 	"fmt"
 	"github.com/golang-collections/collections/set"
-	"strings"
 )
 
 func main() {
 
+	fmt.Println("**************")
+
 	count := 0
-	genWords := 0
+	genWords := 40
 
 	newWords := set.New()
 
 	for {
 		// word := words.RandomWord(5)
-		word := words.RandomWordMinMax(7, 8)
+		word := words.RandomWordMinMax(5, 9)
 		// word := words.RandomWordSimple(10)
 
 		// if len(word) > 7 {
@@ -31,21 +32,13 @@ func main() {
 		// 	continue
 		// }
 
-		// if words.Levenshtein(word, "zierahn") > 3 {
-		// 	continue
-		// }
-
-		// if Levenshtein(word, "sidious") > 3 {
-		// 	continue
-		// }
-
-		// if Levenshtein(word, "skywalker") > 3 {
-		// 	continue
-		// }
-
-		if !strings.Contains(word, "oo") {
+		if words.Levenshtein(word, "speech") > 2 {
 			continue
 		}
+
+		// if !strings.Contains(word, "oo") {
+		// 	continue
+		// }
 
 		if newWords.Has(word) {
 			continue

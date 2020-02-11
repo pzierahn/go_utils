@@ -1,6 +1,14 @@
 # GoGo
 
-Shamir's Secret Sharing:
+## Deps
+
+```shell
+go get github.com/SSSaaS/sssa-golang
+go get github.com/deckarep/golang-set
+```
+
+## Shamir's Secret Sharing
+
 https://github.com/SSSaaS/sssa-golang
 
 ```go
