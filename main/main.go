@@ -1,23 +1,20 @@
 package main
 
 import (
-	"../words"
 	"fmt"
-	"github.com/golang-collections/collections/set"
+	"github.com/pzierahn/go_utils/words"
 )
 
 func main() {
 
-	fmt.Println("**************")
-
 	count := 0
 	genWords := 40
 
-	newWords := set.New()
+	newWords := make(map[string]bool)
 
 	for {
-		// word := words.RandomWord(5)
-		word := words.RandomWordMinMax(5, 9)
+		//word := words.RandomWord(10)
+		word := words.RandomWordMinMax(4, 7)
 		// word := words.RandomWordSimple(10)
 
 		// if len(word) > 7 {
@@ -32,7 +29,7 @@ func main() {
 		// 	continue
 		// }
 
-		if words.Levenshtein(word, "speech") > 2 {
+		if words.Levenshtein(word, "word") > 2 {
 			continue
 		}
 
@@ -40,11 +37,11 @@ func main() {
 		// 	continue
 		// }
 
-		if newWords.Has(word) {
+		if newWords[word] {
 			continue
 		}
 
-		newWords.Insert(word)
+		newWords[word] = true
 
 		fmt.Println(word)
 		count++
